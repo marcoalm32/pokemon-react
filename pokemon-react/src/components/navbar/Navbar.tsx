@@ -4,10 +4,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import  { useNavigate } from 'react-router-dom';
 
 import './Navbar.scss';
 
 export const Navbar = () => {
+
+    const navigate = useNavigate();
 
     const navbar = 'navbar';
     return (
@@ -27,8 +30,8 @@ export const Navbar = () => {
                 <p className='poke-font'>Pokemon React App</p>
             </div>
             <div>
-                <Button color="inherit">Home</Button>
-                <Button color='inherit'>List Pokemons</Button>
+                <Button color="inherit" onClick={() => navigate("/")} >Home</Button>
+                <Button color='inherit' onClick={() => navigate("/pokemons")}>List Pokemons</Button>
             </div>
           </Toolbar>
         </AppBar>
