@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ResponseModel {
+export interface IResponseModel {
     count: number;
     next: string;
     previous: any | null;
-    results: Pokemon[];
+    results: IPokemon[];
 }
 
-export interface Pokemon {
+export interface IPokemon {
     name: string;
     url: string;
 }

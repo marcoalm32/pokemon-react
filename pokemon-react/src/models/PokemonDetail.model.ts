@@ -1,56 +1,56 @@
-export interface PokemonDetail {
-    abilities: Abilities[];
+export interface IPokemonDetail {
+    abilities: IAbilities[];
     base_experience: number;
-    forms: Generic[];
-    game_indices: GameIndices[];
+    forms: IGeneric[];
+    game_indices: IGameIndices[];
     height: number;
-    held_items: HeldItems[];
+    held_items: IHeldItems[];
     id: number;
     is_default: boolean;
     location_area_encounters: string;
-    moves: Move[];
+    moves: IMove[];
     name: string;
     order: number;
     past_types: any;
-    species: Generic;
-    sprites: Sprites;
-    stats: Stats[];
-    types: Type;
+    species: IGeneric;
+    sprites: ISprites;
+    stats: IStats[];
+    types: IType;
     weight: number;
 }
 
-export interface Abilities {
-    ability: Generic;
+export interface IAbilities {
+    ability: IGeneric;
     is_hidden: boolean;
     slot: number;
 }
 
-export interface Generic {
+export interface IGeneric {
     name: string;
     url: string
 }
 
-export interface GameIndices {
+export interface IGameIndices {
     game_index: number;
-    version: Generic;
+    version: IGeneric;
 }
 
-export interface HeldItems {
-    item: Generic;
+export interface IHeldItems {
+    item: IGeneric;
 }
 
-export interface Move {
-    move: Generic;
-    version_group_details: VersionGroupDetails[];
+export interface IMove {
+    move: IGeneric;
+    version_group_details: IVersionGroupDetails[];
 }
 
-export interface VersionGroupDetails {
+export interface IVersionGroupDetails {
     level_learned_at: number;
-    move_learn_method: Generic;
-    version_group: Generic;
+    move_learn_method: IGeneric;
+    version_group: IGeneric;
 }
 
-export interface Sprites {
+export interface ISprites {
     back_default: string | null;
     back_female: string | null;
     back_shiny: string | null;
@@ -59,40 +59,40 @@ export interface Sprites {
     front_female: string | null;
     front_shiny: string | null;
     front_shiny_female: string | null;
-    other: Other;
+    other: IOther;
     versions: any;
 }
 
-export interface Other {
-    dream_world: DreamWorld;
-    home: Home;
-    official_artwork: OfficialArtwork;
+export interface IOther {
+    dream_world: IDreamWorld;
+    home: IHome;
+    official_artwork: IOfficialArtwork;
 }
 
-export interface DreamWorld {
+export interface IDreamWorld {
     front_default: string;
     front_female: string;
 }
 
-export interface Home {
+export interface IHome {
     front_default: string | null;
     front_female:string | null;
     front_shiny: string | null;
     front_shiny_female:string | null;
 }
 
-export interface OfficialArtwork {
+export interface IOfficialArtwork {
     front_default: string | null;
     front_shiny: string | null;
 }
 
-export interface Stats {
+export interface IStats {
     base_stat: number;
     effort: number;
-    stat: Generic;
+    stat: IGeneric;
 }
 
-export interface Type {
+export interface IType {
     slot: number;
-    type: Generic;
+    type: IGeneric;
 }
