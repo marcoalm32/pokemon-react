@@ -51,14 +51,14 @@ export interface IVersionGroupDetails {
 }
 
 export interface ISprites {
-    back_default: string | null;
-    back_female: string | null;
-    back_shiny: string | null;
-    back_shiny_female: string | null;
-    front_default: string | null;
-    front_female: string | null;
-    front_shiny: string | null;
-    front_shiny_female: string | null;
+    back_default: string;
+    back_female: string;
+    back_shiny: string;
+    back_shiny_female: string;
+    front_default: string;
+    front_female: string;
+    front_shiny: string;
+    front_shiny_female: string;
     other: IOther;
     versions: any;
 }
@@ -75,15 +75,15 @@ export interface IDreamWorld {
 }
 
 export interface IHome {
-    front_default: string | null;
-    front_female:string | null;
-    front_shiny: string | null;
-    front_shiny_female:string | null;
+    front_default: string;
+    front_female:string;
+    front_shiny: string;
+    front_shiny_female:string;
 }
 
 export interface IOfficialArtwork {
-    front_default: string | null;
-    front_shiny: string | null;
+    front_default: string;
+    front_shiny: string;
 }
 
 export interface IStats {
