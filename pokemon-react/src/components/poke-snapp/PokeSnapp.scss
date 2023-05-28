@@ -1,0 +1,12 @@
+.snapp {
+
+    &__img {
+        width: 60%;
+        height: 20vh;
+        cursor: pointer;
+    }
+    &__img:hover {
+        background-color: rgb(238, 234, 230);
+        border-radius: 50%;
+    }
+}
