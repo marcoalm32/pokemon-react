@@ -9,4 +9,11 @@
         width: 30%;
         height: 200px;
     }
+
+    &__action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 15px 0;
+    }
 }
