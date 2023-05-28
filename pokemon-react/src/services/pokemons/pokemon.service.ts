@@ -1,11 +1,11 @@
 import {api} from '../api';
-import { IPokemon } from '../../models/Pokemon.model';
+import { IResponseModel } from '../../models/Pokemon.model';
 import { ApiException } from '../ErrorException';
 import { IPokemonDetail } from '../../models/PokemonDetail.model';
 
-const getAll = async (): Promise< IPokemon[] | ApiException | undefined> => {
+const getAll = async (query: number): Promise< IResponseModel | ApiException | undefined> => {
     try {
-        const { data } = await api().get("/pokemon");
+        const { data } = await api().get(query ? `/pokemon?limit=${query}` : '/pokemon');
         return data;
     }
     catch(err: any) {
@@ -24,7 +24,18 @@ const getByName = async (pokeName: string): Promise<IPokemonDetail | ApiExceptio
     }
 }
 
+const getById = async (url: string): Promise<IPokemonDetail | ApiException | undefined> => {
+    try {
+        const { data } = await api().get(url);
+        return data;
+    }
+    catch (err: any) {
+        return new ApiException(err.message || "Error in Api!");
+    }
+}
+
 export const PokemonService = {
     getAll,
     getByName,
+    getById,
 }
