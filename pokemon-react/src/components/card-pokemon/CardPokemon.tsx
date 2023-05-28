@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
@@ -10,6 +10,7 @@ import './CardPokemon.scss';
 import { IPokemonDetail } from "../../models/PokemonDetail.model";
 import { IPokemon } from "../../models/Pokemon.model";
 import { PokemonService } from "../../services/pokemons/pokemon.service";
+import { PokeSnapp } from "../poke-snapp/PokeSnapp";
 
 export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) => {
 
@@ -18,7 +19,7 @@ export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) 
     useEffect(() => {
       PokemonService.getById(url)
         .then((response: IPokemonDetail | any) => {
-          setPokemon(response)
+          setPokemon(response);
         })
         .catch((err) => {
           console.log(err)
@@ -28,16 +29,16 @@ export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) 
     const cardStyle = 'card';
     return (
       <Card sx={{ maxWidth: 300 }} className={cardStyle}>
-        <div className={`${cardStyle}__img`}>
-          <img src={pokemon?.sprites.front_default} alt="" />
-        </div>
+        <PokeSnapp 
+          sprites={pokemon?.sprites}/>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {pokemon?.name}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Detail</Button>
+          <CatchingPokemonIcon />
+          <Button size="small">More Detail</Button>
         </CardActions>
       </Card>
     );
