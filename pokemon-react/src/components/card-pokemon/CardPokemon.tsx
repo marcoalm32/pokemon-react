@@ -11,10 +11,18 @@ import { IPokemonDetail } from "../../models/PokemonDetail.model";
 import { IPokemon } from "../../models/Pokemon.model";
 import { PokemonService } from "../../services/pokemons/pokemon.service";
 import { PokeSnapp } from "../poke-snapp/PokeSnapp";
+import usePokemonStore from "../../store/pokemonStore";
 
 export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) => {
 
     const [ pokemon, setPokemon ] = useState<IPokemonDetail>();
+    const addPokemon = usePokemonStore(state => state.updatedPokemon);
+
+    const showMoreDetail = () => {
+      if(pokemon) {
+        addPokemon(pokemon);
+      }
+    }
 
     useEffect(() => {
       PokemonService.getById(url)
@@ -38,7 +46,7 @@ export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) 
         </CardContent>
         <CardActions>
           <CatchingPokemonIcon />
-          <Button size="small">More Detail</Button>
+          <Button size="small" onClick={showMoreDetail}>More Detail</Button>
         </CardActions>
       </Card>
     );
