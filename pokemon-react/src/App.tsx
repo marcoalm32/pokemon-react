@@ -11,13 +11,15 @@ import { PokeModal } from './components/poke-modal/PokeModal'
 function App() {
 
   return (
-    <div className='app'>
+    <div>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/pokemons' element={<PokemonList />} />
-        </Routes>
+        <div className='app'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/pokemons' element={<PokemonList />} />
+          </Routes>
+        </div>
         <PokeModal />
       </BrowserRouter>
     </div>
