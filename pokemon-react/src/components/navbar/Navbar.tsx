@@ -33,7 +33,8 @@ export const Navbar = () => {
               <TextField 
                 label="Search" 
                 variant="outlined"
-                size='small' />
+                size='small'
+                className={`${navbar}__search__input`} />
             </div>
             <div className={`${navbar}__action`}>
                 <Button color="inherit" onClick={() => navigate("/")} >Home</Button>

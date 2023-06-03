@@ -12,6 +12,13 @@
         align-items: center;
     }
 
+    &__search {
+
+        &__input {
+            background-color: #fff;
+        }
+    }
+
     &__action {
         width: 25%;
         display: flex;
