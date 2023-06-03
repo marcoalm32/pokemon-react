@@ -1,0 +1,16 @@
+.poke-modal {
+
+    &__content {
+        box-shadow: 3px 4px 2px #dac4c4;
+
+        &__closed {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+        }
+    }
+    
+    &__actions {
+
+    }
+}
