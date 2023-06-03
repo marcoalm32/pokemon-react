@@ -46,7 +46,8 @@ export const PokeSnapp = (item: any) => {
                 <img  src={currentImg.value} 
                     alt='img pokemon'
                     className={`${snapp}__img`}
-                    onClick={() => onChangeCurrentImg()}/>
+                    onMouseOver={() => onChangeCurrentImg()}
+                    onMouseOut={() => onChangeCurrentImg()}/>
             )}
         </div>
     )

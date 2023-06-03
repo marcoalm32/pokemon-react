@@ -7,6 +7,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import  { useNavigate } from 'react-router-dom';
 
 import './Navbar.scss';
+import TextField from '@mui/material/TextField';
 
 export const Navbar = () => {
 
@@ -15,21 +16,26 @@ export const Navbar = () => {
     const navbar = 'navbar';
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color='primary'>
+        <AppBar position="static" sx={{backgroundColor: '#e3f2fd'}}>
           <Toolbar className={navbar}>
             <div className={`${navbar}__logo-and-title`}>
                 <IconButton
                 size="large"
-                edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2 }}
+                sx={{ mr: 1 }}
                 >
                 <CatchingPokemonIcon />
                 </IconButton>
-                <p className='poke-font'>Pokemon React App</p>
+                <span>Pokemon React App</span>
             </div>
-            <div>
+            <div className={`${navbar}__search`}>
+              <TextField 
+                label="Search" 
+                variant="outlined"
+                size='small' />
+            </div>
+            <div className={`${navbar}__action`}>
                 <Button color="inherit" onClick={() => navigate("/")} >Home</Button>
                 <Button color='inherit' onClick={() => navigate("/pokemons")}>List Pokemons</Button>
             </div>

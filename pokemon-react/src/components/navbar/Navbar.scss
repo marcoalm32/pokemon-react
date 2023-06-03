@@ -3,8 +3,18 @@
     display: flex;
     justify-content: space-between;
     padding: 0 5px;
+    box-sizing: border-box;
+    color: #222;
+    font-weight: 600;
 
     &__logo-and-title {
         display: flex;
+        align-items: center;
+    }
+
+    &__action {
+        width: 25%;
+        display: flex;
+        justify-content: space-around;
     }
 }
