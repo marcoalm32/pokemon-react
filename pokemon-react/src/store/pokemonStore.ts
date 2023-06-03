@@ -2,15 +2,14 @@ import create from 'zustand';
 import { IPokemonDetail } from '../models/PokemonDetail.model';
 
 type IPokeStore = {
-    pokemons: IPokemonDetail[],
-    updatedPokemon: (newPokemon: IPokemonDetail) => void
+    pokemons: IPokemonDetail | any,
+    updatedPokemon: (newPokemon: IPokemonDetail | any) => void
 }
 
 const usePokemonStore = create<IPokeStore>((set) => ({
-     pokemons: [],
-
+     pokemons: null,
      updatedPokemon: (pokemon: IPokemonDetail) => {
-        set(state => ({pokemons: [...state.pokemons, pokemon]}))
+        set(state => ({pokemons: {...state.pokemons, pokemon}}))
      }
 }))
 
