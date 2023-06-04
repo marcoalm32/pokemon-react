@@ -15,7 +15,7 @@ export interface IPokemonDetail {
     species: IGeneric;
     sprites: ISprites;
     stats: IStats[];
-    types: IType;
+    types: IType[];
     weight: number;
 }
 
