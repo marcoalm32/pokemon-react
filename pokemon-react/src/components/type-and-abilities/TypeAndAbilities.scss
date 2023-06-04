@@ -1,0 +1,16 @@
+.type-and-abilities {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+
+    &__name {
+        font-size: .7rem;
+        font-weight: 700;
+        margin-left: 5%;
+    }
+
+    &__icon {
+        font-size: 30px;
+    }
+}
