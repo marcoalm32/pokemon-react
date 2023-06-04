@@ -8,6 +8,25 @@
             display: flex;
             justify-content: end;
         }
+
+        &__type_and_ability {
+            display: flex;
+
+            &__types, &__abilities {
+                min-width: 40%;
+                text-align: center;
+                box-shadow: 2px 2px 2px silver;
+                border-radius: 8px;
+                margin-top: 10px;
+                background-color:#a0bea0;
+            }
+    
+            &__abilities {
+                background-color: #98b3c0;
+                margin-left: 5%;
+            }
+        }
+ 
     }
     
     &__actions {
