@@ -2,40 +2,29 @@ import { useEffect, useState } from 'react';
 
 import './PokeSnapp.scss'
 import { ISprites } from '../../models/PokemonDetail.model';
-
-export interface IImg {
-    key:string;
-    value: string;
-}
+import { ImgType } from '../../models/enums/imgType';
 
 export const PokeSnapp = (item: any) => {
 
-    const [ currentImg, setCurrentImg ] = useState<IImg>({
-        key: "front",
-        value: ""
-    });
+    const [ currentImg, setCurrentImg ] = useState<string>(item?.sprites?.front_default);
 
     useEffect(() => {
         if(item) {
-            setCurrentImg({
-                key: "front",
-                value: item?.sprites?.front_default
-            });
+            setCurrentImg(item?.sprites?.front_default);
         }
     }, [item]);
 
-    function onChangeCurrentImg() {
-        if(currentImg.key == "front") {
-            setCurrentImg({
-                key: "back",
-                value: item?.sprites?.back_default
-            })
-        }
-        if(currentImg.key == "back") {
-            setCurrentImg({
-                key: "front",
-                value: item?.sprites?.front_default
-            })
+    const onChangeCurrentImg = (imgType: string) => {
+        switch(imgType) {
+            case ImgType.FRONT:
+                setCurrentImg(item?.sprites?.back_default);
+                break;
+            case ImgType.BACK: 
+                setCurrentImg(item?.sprites?.front_default);
+                break;
+            case ImgType.FRONT_SHINY:
+                setCurrentImg(item?.sprites?.back_shiny);
+                break;
         }
     }
 
@@ -43,11 +32,12 @@ export const PokeSnapp = (item: any) => {
     return (
         <div className={snapp}>
             {item && (
-                <img  src={currentImg.value} 
+                <img  src={currentImg} 
                     alt='img pokemon'
                     className={`${snapp}__img`}
-                    onMouseOver={() => onChangeCurrentImg()}
-                    onMouseOut={() => onChangeCurrentImg()}/>
+                    onMouseOver={() => onChangeCurrentImg(ImgType.FRONT)}
+                    onMouseOut={() => onChangeCurrentImg(ImgType.BACK)}
+                    onClick={() => onChangeCurrentImg(ImgType.FRONT_SHINY)}/>
             )}
         </div>
     )
