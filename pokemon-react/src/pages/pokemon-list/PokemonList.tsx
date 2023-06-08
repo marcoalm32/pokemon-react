@@ -8,22 +8,43 @@ import { CardPokemon } from "../../components/card-pokemon/CardPokemon";
 import Button from "@mui/material/Button";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './PokemonList.scss';
+import useSearchPokemonStore from "../../store/searchStore";
 
 const PokemonList: FunctionComponent<any> = () => {
     
     const [ limit, setLimit ] = useState<number>(25);
     const [ pokemons, setPokemons] = useState<IPokemon[]>();
 
-    useEffect(() => {
-        PokemonService.getAll(limit)
-            .then((response: IResponseModel | any) => {
-                setPokemons(response.results);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [limit])
+    const query = useSearchPokemonStore(state => state.query);
 
+    useEffect(() => {
+        console.log(query)
+        if(query) {
+            filteredPokemon();
+        }else {
+            getAllPokemons();
+        }
+    }, [limit, query]);
+
+    const getAllPokemons = () => {
+      PokemonService.getAll(limit)
+        .then((response: IResponseModel | any) => {
+          setPokemons(response.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const filteredPokemon = () => {
+        const filteredPokemon: IPokemon[] | any = [];
+        pokemons?.filter(pokemon => {
+            if(pokemon.name.includes(query)) {
+                filteredPokemon.push(pokemon);
+                setPokemons(filteredPokemon);
+            }
+        })
+    }
     
     const pokemonList = 'pokemon-list';
     return (
