@@ -20,7 +20,7 @@ const PokemonList: FunctionComponent<any> = () => {
     useEffect(() => {
         console.log(query)
         if(query) {
-            filteredPokemon();
+            pokemonFilter();
         }else {
             getAllPokemons();
         }
@@ -36,7 +36,7 @@ const PokemonList: FunctionComponent<any> = () => {
         });
     };
 
-    const filteredPokemon = () => {
+    const pokemonFilter = () => {
         const filteredPokemon: IPokemon[] | any = [];
         pokemons?.filter(pokemon => {
             if(pokemon.name.includes(query)) {
