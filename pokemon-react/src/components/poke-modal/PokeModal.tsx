@@ -37,7 +37,7 @@ export const PokeModal: FunctionComponent<any> = (props) => {
             </div>
             <ImgModal
               name={props.pokemon?.name}
-              img={props.pokemon?.sprites?.front_default}
+              img={props.pokemon?.sprites}
             />
             <div className={`${pokeModal}__content__type_and_ability`}>
               <div className={`${pokeModal}__content__type_and_ability__types`}>
