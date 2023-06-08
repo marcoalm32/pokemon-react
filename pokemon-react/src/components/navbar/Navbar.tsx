@@ -7,11 +7,18 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import  { useNavigate } from 'react-router-dom';
 
 import './Navbar.scss';
-import TextField from '@mui/material/TextField';
+import { SearchPokemon } from '../search-pokemon/SearchPokemon';
+import useSearchPokemonStore from '../../store/searchStore';
 
 export const Navbar = () => {
 
     const navigate = useNavigate();
+    const sendQuery = useSearchPokemonStore(state => state.sendQuery);
+
+    const pokemonFilter = (e: any) => {
+      const query = e.target.value;
+      sendQuery(query);
+    }
 
     const navbar = 'navbar';
     return (
@@ -29,13 +36,9 @@ export const Navbar = () => {
                 </IconButton>
                 <span>Pokemon React App</span>
             </div>
-            <div className={`${navbar}__search`}>
-              <TextField 
-                label="Search" 
-                variant="outlined"
-                size='small'
-                className={`${navbar}__search__input`} />
-            </div>
+            <SearchPokemon
+              pokemonFilter={(e: any) => pokemonFilter(e)}
+            />
             <div className={`${navbar}__action`}>
                 <Button color="inherit" onClick={() => navigate("/")} >Home</Button>
                 <Button color='inherit' onClick={() => navigate("/pokemons")}>List Pokemons</Button>
