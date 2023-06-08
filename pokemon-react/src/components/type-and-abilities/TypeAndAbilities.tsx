@@ -1,7 +1,14 @@
 import { FunctionComponent, useEffect, useState } from "react";
 
 import { BsFire, BsWater, } from 'react-icons/bs';
-import { GiFlyingTrout, GiGhost, GiHighGrass, GiHighKick, GiOvermind, GiPoisonBottle, GiStoneSphere } from 'react-icons/gi';
+import { GiFlyingTrout, 
+    GiGhost, 
+    GiHighGrass, 
+    GiHighKick, 
+    GiOvermind, 
+    GiPoisonBottle, 
+    GiStoneSphere,
+    GiFairyWand } from 'react-icons/gi';
 import { FaDragon } from 'react-icons/fa';
 import { AiFillBug, AiFillThunderbolt } from 'react-icons/ai';
 import { MdOutlineSevereCold, MdTerrain } from 'react-icons/md';
@@ -76,6 +83,9 @@ export const TypeAndAbilities: FunctionComponent<any> = ({slot, type, ability}: 
             case "dragon":
                 setSelectedIcon(<FaDragon />);  
                 break;
+            case "fairy":
+                setSelectedIcon(<GiFairyWand />);
+                break;
             default:
                 setSelectedIcon(<CgPokemon />);
                 break;
@@ -89,7 +99,8 @@ export const TypeAndAbilities: FunctionComponent<any> = ({slot, type, ability}: 
       {selectedIcon && <div className={`${typeAndAbilities}__icon`}>{selectedIcon}</div>}
       <span 
         className={`${typeAndAbilities}__name`}>
-            {type ? type?.name : ability?.name}
+            {type ? type?.name[0].toUpperCase() + '' + type?.name.substring(1)
+                : ability?.name}
         </span>
     </div>
   );
