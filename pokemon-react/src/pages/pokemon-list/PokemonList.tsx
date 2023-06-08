@@ -18,7 +18,6 @@ const PokemonList: FunctionComponent<any> = () => {
     const query = useSearchPokemonStore(state => state.query);
 
     useEffect(() => {
-        console.log(query)
         if(query) {
             pokemonFilter();
         }else {
