@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState, useContext } from "react";
 import { PokemonService } from '../../services/pokemons/pokemon.service';
 import Grid from '@mui/material/Grid';
 import { IPokemon, IResponseModel } from "../../models/Pokemon.model";
@@ -7,23 +7,25 @@ import pokeLogo from '../../assets/logo/pokemon-logo-0.svg';
 import { CardPokemon } from "../../components/card-pokemon/CardPokemon";
 import Button from "@mui/material/Button";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { SearchPokemonContext } from "../../context/SearchContext";
+
 import './PokemonList.scss';
-import useSearchPokemonStore from "../../store/searchStore";
+
 
 const PokemonList: FunctionComponent<any> = () => {
     
     const [ limit, setLimit ] = useState<number>(25);
     const [ pokemons, setPokemons] = useState<IPokemon[]>();
 
-    const query = useSearchPokemonStore(state => state.query);
+    const { queryInContext } = useContext(SearchPokemonContext);
 
     useEffect(() => {
-        if(query) {
+        if(queryInContext) {
             pokemonFilter();
         }else {
             getAllPokemons();
         }
-    }, [limit, query]);
+    }, [limit, queryInContext]);
 
     const getAllPokemons = () => {
       PokemonService.getAll(limit)
@@ -38,7 +40,7 @@ const PokemonList: FunctionComponent<any> = () => {
     const pokemonFilter = () => {
         const filteredPokemon: IPokemon[] | any = [];
         pokemons?.filter(pokemon => {
-            if(pokemon.name.includes(query)) {
+            if(pokemon.name.includes(queryInContext)) {
                 filteredPokemon.push(pokemon);
                 setPokemons(filteredPokemon);
             }
@@ -58,7 +60,7 @@ const PokemonList: FunctionComponent<any> = () => {
                 ))}
             </Grid>
             <div className={`${pokemonList}__action`}>
-                {!query && <Button variant="contained" onClick={() => setLimit(limit + 25)}>
+                {!queryInContext && <Button variant="contained" onClick={() => setLimit(limit + 25)}>
                     Show More
                     <AddCircleIcon sx={{marginLeft: 1}}/>
                 </Button>}
