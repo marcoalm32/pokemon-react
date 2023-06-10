@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,16 +11,16 @@ import { IPokemonDetail } from "../../models/PokemonDetail.model";
 import { IPokemon } from "../../models/Pokemon.model";
 import { PokemonService } from "../../services/pokemons/pokemon.service";
 import { PokeSnapp } from "../poke-snapp/PokeSnapp";
-import usePokemonStore from "../../store/pokemonStore";
+import { PokemonContext } from "../../context/PokemonContext";
 
 export const CardPokemon: FunctionComponent<IPokemon> = ({name, url}: IPokemon) => {
 
     const [ pokemon, setPokemon ] = useState<IPokemonDetail>();
-    const addPokemon = usePokemonStore(state => state.updatedPokemon);
+    const {setPokemonInContext} = useContext(PokemonContext);
 
     const showMoreDetail = () => {
       if(pokemon) {
-        addPokemon(pokemon);
+        setPokemonInContext(pokemon);
       }
     }
 
