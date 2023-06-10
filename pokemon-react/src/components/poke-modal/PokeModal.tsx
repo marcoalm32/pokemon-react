@@ -3,21 +3,21 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from '@mui/icons-material/Close';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import { ImgModal } from './img-modal/ImgModal';
-import usePokemonStore from '../../store/pokemonStore';
 import { IconButton } from '@mui/material';
 import { TypeAndAbilities } from '../type-and-abilities/TypeAndAbilities';
 import { IAbilities, IType } from '../../models/PokemonDetail.model';
 
 import './PokeModal.scss';
+import { PokemonContext } from '../../context/PokemonContext';
 
 export const PokeModal: FunctionComponent<any> = (props) => {
 
-    const updatePokemon = usePokemonStore(state => state.updatedPokemon);
+    const {setPokemonInContext} = useContext(PokemonContext);
 
     const verifyHasSelectedPokemon = () => {
-      updatePokemon(null);
+      setPokemonInContext(null);
     }
 
     const pokeModal = 'poke-modal';
