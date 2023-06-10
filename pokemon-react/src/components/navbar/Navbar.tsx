@@ -5,20 +5,21 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import  { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { SearchPokemon } from '../search-pokemon/SearchPokemon';
+import Grid from '@mui/material/Grid';
+import { SearchPokemonContext } from '../../context/SearchContext';
 
 import './Navbar.scss';
-import { SearchPokemon } from '../search-pokemon/SearchPokemon';
-import useSearchPokemonStore from '../../store/searchStore';
-import Grid from '@mui/material/Grid';
 
 export const Navbar = () => {
 
     const navigate = useNavigate();
-    const sendQuery = useSearchPokemonStore(state => state.sendQuery);
+    const { setQueryInContext } = useContext(SearchPokemonContext);
 
     const pokemonFilter = (e: any) => {
       const query = e.target.value;
-      sendQuery(query);
+      setQueryInContext(query);
     }
 
     const navbar = 'navbar';
