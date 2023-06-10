@@ -18,7 +18,6 @@ const PokemonList: FunctionComponent<any> = () => {
     const query = useSearchPokemonStore(state => state.query);
 
     useEffect(() => {
-        console.log(query)
         if(query) {
             pokemonFilter();
         }else {
@@ -59,10 +58,10 @@ const PokemonList: FunctionComponent<any> = () => {
                 ))}
             </Grid>
             <div className={`${pokemonList}__action`}>
-                <Button variant="contained" onClick={() => setLimit(limit + 25)}>
+                {!query && <Button variant="contained" onClick={() => setLimit(limit + 25)}>
                     Show More
                     <AddCircleIcon sx={{marginLeft: 1}}/>
-                </Button>
+                </Button>}
             </div>
         </div>
     )

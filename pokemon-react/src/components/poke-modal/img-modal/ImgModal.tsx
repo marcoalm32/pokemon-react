@@ -1,10 +1,10 @@
 import { FunctionComponent, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 
 import './ImgModal.scss';
 import { ISprites } from '../../../models/PokemonDetail.model';
+import { PokeSnapp } from '../../poke-snapp/PokeSnapp';
 
 type pokemonForImgModal = {
   img: ISprites;
@@ -18,15 +18,10 @@ export const ImgModal: FunctionComponent<any> = ({img, name}: pokemonForImgModal
     const imgModal = 'img-modal';
     return (
       <Card className={imgModal}>
-        {img && <CardMedia
-          className={`${imgModal}__img`}
-          title="green iguana"
-          image={imgType ? imgType : img?.front_default}
-        />}
+        {img && <PokeSnapp sprites={img}/>}
         <CardContent className={`${imgModal}__name`}>
           {name ? name[0].toUpperCase() + '' + name.substring(1) : ''}
         </CardContent>
-        
       </Card>
     );
 }

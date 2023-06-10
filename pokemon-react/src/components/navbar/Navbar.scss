@@ -1,15 +1,16 @@
 .navbar {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     padding: 0 5px;
     box-sizing: border-box;
-    color: #222;
-    font-weight: 600;
+    color: #ffcb05;
+    font-weight: 700;
+    background-color: #2a75bb;
 
     &__logo-and-title {
         display: flex;
         align-items: center;
+        font-size: large;
+        margin-top: 5px;
     }
 
     &__search {
@@ -20,8 +21,8 @@
     }
 
     &__action {
-        width: 25%;
         display: flex;
         justify-content: space-around;
+        margin-top: 10px;
     }
 }
